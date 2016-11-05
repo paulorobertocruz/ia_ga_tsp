@@ -1,5 +1,6 @@
 package;
 
+import de.polygonal.ds.ArrayList;
 
 class Cidade{
 
@@ -30,52 +31,52 @@ class Cidade{
 
 class Gerenciador{
 
-  static var cidades:Array<Cidade> = new Array<Cidade>();
+  static var cidades:ArrayList<Cidade> = new ArrayList<Cidade>();
 
   static public function add(c:Cidade):Void{
-    cidades.push(c);
+    cidades.add(c);
   }
 
   static public function get(i:Int):Cidade{
-    return cidades[i];
+    return cidades.get(i);
   }
 
   static public function quantidade():Int{
-    return cidades.length;
+    return cidades.size;
   }
 
 }
 
 class Rota{
-  var rota:Array<Cidade>;
+  var rota:ArrayList<Cidade>;
 
   var fitness:Float;
   var distancia:Float;
 
 
   public function new(){
-    rota = new Array<Cidade>();
+    rota = new ArrayList<Cidade>();
     fitness = 0;
     distancia = 0;
   }
 
   public function init_vazio() : Void {
     for(i in 0...Gerenciador.quantidade()){
-      rota.push(null);
+      rota.add(null);
     }
   }
 
-  public function init_copia(r:Array<Cidade>):Void{
+  public function init_copia(r:ArrayList<Cidade>):Void{
     rota = r;
   }
 
   public function set_cidade(index:Int, c:Cidade):Void{
     //ficar atento porque isso pode não funcionar
-    rota[index] = c;
+    rota.set(index, c);
   }
 
   public function get_cidade(i:Int):Cidade{
-    return rota[i];
+    return rota.get(i);
   }
 
   public function gerar_individuo():Void {
@@ -87,14 +88,14 @@ class Rota{
    }
 
    public function quantidade_cidades():Int{
-     return rota.length;
+     return rota.size;
    }
 
    public function get_distancia():Float{
 
      if(distancia == 0){
        var d:Float = 0;
-       for (c in 0...rota.length){
+       for (c in 0...quantidade_cidades()){
 
          var ca:Cidade = get_cidade(c);
          var ct:Cidade;
@@ -122,8 +123,8 @@ class Rota{
      return fitness;
    }
 
-   public function contem_cidade(c:Cidade):Bool{
-     return rota.indexOf(c) >= 0;
+   public function contem_cidade(c:Cidade):Bool{     
+     return rota.contains(c);
    }
 
    //implementar função de string para verificar o resultado?
@@ -143,6 +144,7 @@ class GA{
 
 class Main{
   static public function main():Void{
+      trace("GA TSA");
         var c :Cidade = new Cidade(60, 200);
         Gerenciador.add(c);
         var c2 :Cidade = new Cidade(180, 200);

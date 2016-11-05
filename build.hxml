@@ -1,3 +1,4 @@
 -cp src
 -main Main
 -neko bin/main_neko.n
+-lib polygonal-ds
