@@ -1,4 +1,13 @@
 -cp src
 -main Main
--neko bin/main_neko.n
 -lib polygonal-ds
+
+--each
+-swf bin/swf_main.swf
+
+--next
+-js bin/js_main.js
+
+--next
+-neko bin/neko_main.n
+-cmd neko bin/neko_main
