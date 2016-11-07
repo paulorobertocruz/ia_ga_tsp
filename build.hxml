@@ -2,12 +2,17 @@
 -main Main
 -lib polygonal-ds
 
---each
--swf bin/swf_main.swf
+# --each
 
---next
+# -swf bin/swf_main.swf
+
+# --next
+
 -js bin/js_main.js
+# -cmd node bin/js_main.js
 
---next
--neko bin/neko_main.n
--cmd neko bin/neko_main
+# --next
+# -neko bin/neko_main.n
+# -cmd neko bin/neko_main
+# --next
+# -java bin/java
