@@ -8,6 +8,7 @@ class Populacao{
   }
 
   public function get_rota(i:Int):Rota{
+
     return rotas[i];
   }
 
@@ -18,7 +19,6 @@ class Populacao{
   public function new(tamanho:Int, init:Bool = true){
 
     rotas = new Array<Rota>();
-
     if(init){
       for(i in 0...tamanho){
         var rr:Rota = new Rota();
@@ -29,7 +29,7 @@ class Populacao{
       for(i in 0...tamanho){
         set_rota(i, null);
       }
-    }
+    }    
 
   }
 

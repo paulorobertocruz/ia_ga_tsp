@@ -1,46 +1,47 @@
 package;
 
-import de.polygonal.ds.ArrayList;
-
 class Rota{
-  var rota:ArrayList<Cidade>;
+
+  var rota:Array<Cidade> = new Array<Cidade>();
+
   var fitness:Float = 0;
+
   var distancia:Float = 0;
 
-  public function new(r:ArrayList<Cidade> = null){
+  public function new(){
 
-    fitness = 0;
-    distancia = 0;
-    if(r == null){
-      rota = new ArrayList<Cidade>();
-      for(i in 0...Gerenciador.quantidade()){
-        rota.add(null);
-      }
-    }else{
-      rota = r;
+    for(i in 0...Gerenciador.quantidade()){
+      rota.push(null);
     }
+    // trace("new Rota");
+    // trace("Cidades: " + rota.length);
+    // trace(rota);
   }
 
   public function set_cidade(index:Int, c:Cidade):Void{
-    rota.set(index, c);
+    rota[index] = c;
   }
 
   public function get_cidade(i:Int):Cidade{
-    return rota.get(i);
+    // trace("tamanho_rota: " + quantidade_cidades());
+    return rota[i];
   }
 
   public function gerar_individuo():Void {
 
        for (index in 0...Gerenciador.quantidade()){
-
          set_cidade(index, Gerenciador.get(index));
        }
-       rota.shuffle();
-
+       rota = RandomArrayTools.shuffle(rota);
+      //  trace("new Rota");
+      //  trace("Cidades: " + rota.length);
+      //  for( i in 0...rota.length){
+      //    trace(rota[i]);
+      //  }
    }
 
    public function quantidade_cidades():Int{
-     return rota.size;
+     return rota.length;
    }
 
    public function get_distancia():Float{
@@ -77,9 +78,15 @@ class Rota{
    }
 
    public function contem_cidade(c:Cidade):Bool{
-     return rota.contains(c);
+     return rota.indexOf(c) > 0;
    }
 
-
+   public function toString():String{
+     var str:String = "{";
+     for (i in 0...rota.length){
+       str += "["+i+":"+ rota[i]+"]";
+     }
+     return str;
+   }
 
 }

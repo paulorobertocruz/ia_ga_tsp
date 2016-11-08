@@ -47,15 +47,29 @@ class Main{
 
 
         var populacao:Populacao = new Populacao(50);
-        var distancia_anterior:Float = populacao.get_fittest().get_distancia();
+        var melhor_rota:Rota = populacao.get_fittest();
+        var rota_agora:Rota;
+
+        var distancia_anterior:Float;
+        var distandia_agora:Float;
+
+        distancia_anterior = melhor_rota.get_distancia();
+
         trace("Distancia Inicial: " + distancia_anterior);
 
-        var melhor_rota:Rota = populacao.get_fittest();
         while(true){
+
           populacao = AlgoritmoGenetico.evoluir(populacao);
-          if(distancia_anterior > populacao.get_fittest().get_distancia()){
-            melhor_rota = populacao.get_fittest();
-            trace(populacao.get_fittest().get_distancia());
+          rota_agora = populacao.get_fittest();
+          distandia_agora = rota_agora.get_distancia();
+
+          if(distancia_anterior > distandia_agora){
+
+            melhor_rota = rota_agora;
+            distancia_anterior = distandia_agora;
+
+            trace(distancia_anterior);
+
           }
           distancia_anterior = populacao.get_fittest().get_distancia();
         }

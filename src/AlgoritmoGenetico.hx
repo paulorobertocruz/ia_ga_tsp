@@ -3,11 +3,14 @@ package;
 class AlgoritmoGenetico {
 
     static var taxa_mutacao:Float = 0.0325;
+
     static var tamanho_amostra_rota:Int = 10;
+
     static var elitismo:Bool = true;
 
 
     static public function evoluir(pop:Populacao):Populacao {
+        
         var nova_populacao:Populacao = new Populacao(pop.tamanho(), false);
 
         var elitismoOffset:Int = 0;
